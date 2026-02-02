@@ -179,7 +179,7 @@ class SearchOnlyTest:
 # Main
 def main():
     print("=" * 60)
-    print("🔍 QDRANT SEARCH TEST")
+    print(" QDRANT SEARCH TEST")
     print("   Search Only - No SLM")
     print("=" * 60)
     print()
@@ -248,7 +248,7 @@ def main():
         elif choice == '3':
             # Quick test
             print()
-            query = input("🔍 Enter query: ").strip()
+            query = input(" Enter query: ").strip()
             if query:
                 print()
                 searcher.search(query, top_k=5)
