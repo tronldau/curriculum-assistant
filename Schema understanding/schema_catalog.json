@@ -1,0 +1,910 @@
+{
+  "domain": "curriculum",
+  "tables": {
+    "account": {
+      "columns": [
+        "id",
+        "password",
+        "user_name",
+        "user_role",
+        "instructor_id"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "asiin_assessment_tool": {
+      "columns": [
+        "clo_id",
+        "course_id",
+        "assessment_id",
+        "percentage"
+      ],
+      "pk": [
+        "clo_id",
+        "course_id",
+        "assessment_id"
+      ],
+      "fks": [
+        {
+          "column": "assessment_id",
+          "ref_table": "assessment",
+          "ref_column": "id"
+        },
+        {
+          "column": "clo_id",
+          "ref_table": "asiin_clo",
+          "ref_column": "id"
+        },
+        {
+          "column": "course_id",
+          "ref_table": "course",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "asiin_clo": {
+      "columns": [
+        "id",
+        "description"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "asiin_closlo": {
+      "columns": [
+        "clo_id",
+        "slo_id",
+        "percentage",
+        "level"
+      ],
+      "pk": [
+        "clo_id",
+        "slo_id"
+      ],
+      "fks": [
+        {
+          "column": "clo_id",
+          "ref_table": "asiin_clo",
+          "ref_column": "id"
+        },
+        {
+          "column": "slo_id",
+          "ref_table": "slo",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "assessment": {
+      "columns": [
+        "id",
+        "type",
+        "type_vn"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "assessment_tool": {
+      "columns": [
+        "assessment_id",
+        "course_id",
+        "loutcome_id",
+        "precentage"
+      ],
+      "pk": [],
+      "fks": [
+        {
+          "column": "assessment_id",
+          "ref_table": "assessment",
+          "ref_column": "id"
+        },
+        {
+          "column": "course_id",
+          "ref_table": "course",
+          "ref_column": "id"
+        },
+        {
+          "column": "loutcome_id",
+          "ref_table": "learning_outcome",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "book": {
+      "columns": [
+        "id",
+        "author",
+        "title",
+        "version",
+        "publisher",
+        "year",
+        "ISBN",
+        "type"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "class": {
+      "columns": [
+        "id",
+        "course_id",
+        "group_theory",
+        "group_lab",
+        "num_students",
+        "instructor_id",
+        "semester",
+        "academic_year"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "class_assessment": {
+      "columns": [
+        "assessment_id",
+        "class_id",
+        "learning_outcome_id",
+        "precentage"
+      ],
+      "pk": [
+        "assessment_id",
+        "class_id",
+        "learning_outcome_id"
+      ],
+      "fks": [
+        {
+          "column": "learning_outcome_id",
+          "ref_table": "learning_outcome",
+          "ref_column": "id"
+        },
+        {
+          "column": "class_id",
+          "ref_table": "class_session",
+          "ref_column": "id"
+        },
+        {
+          "column": "assessment_id",
+          "ref_table": "assessment",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "class_assessment_course": {
+      "columns": [
+        "class_id",
+        "assessment_id",
+        "percentage"
+      ],
+      "pk": [
+        "class_id",
+        "assessment_id"
+      ],
+      "fks": [
+        {
+          "column": "assessment_id",
+          "ref_table": "assessment",
+          "ref_column": "id"
+        },
+        {
+          "column": "class_id",
+          "ref_table": "class_session",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "class_session": {
+      "columns": [
+        "id",
+        "course_id",
+        "semester",
+        "academic_year",
+        "group_theory"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": [
+        {
+          "column": "course_id",
+          "ref_table": "course",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "class_slo_clo": {
+      "columns": [
+        "class_id",
+        "clo_id",
+        "slo_id",
+        "percentage"
+      ],
+      "pk": [
+        "class_id",
+        "clo_id",
+        "slo_id"
+      ],
+      "fks": [
+        {
+          "column": "class_id",
+          "ref_table": "class_session",
+          "ref_column": "id"
+        },
+        {
+          "column": "clo_id",
+          "ref_table": "learning_outcome",
+          "ref_column": "id"
+        },
+        {
+          "column": "slo_id",
+          "ref_table": "slo",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "clo_asiin": {
+      "columns": [
+        "id",
+        "description"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "clo_slo": {
+      "columns": [
+        "slo_id",
+        "lo_id",
+        "percentage",
+        "level"
+      ],
+      "pk": [],
+      "fks": [
+        {
+          "column": "lo_id",
+          "ref_table": "learning_outcome",
+          "ref_column": "id"
+        },
+        {
+          "column": "slo_id",
+          "ref_table": "slo",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "course": {
+      "columns": [
+        "id",
+        "course_level_id",
+        "name",
+        "name_vn",
+        "credit_theory",
+        "credit_lab",
+        "description"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "course_assessment": {
+      "columns": [
+        "assessment_id",
+        "course_id",
+        "percentage"
+      ],
+      "pk": [
+        "assessment_id",
+        "course_id"
+      ],
+      "fks": [
+        {
+          "column": "course_id",
+          "ref_table": "course",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "course_assessment_asiin": {
+      "columns": [
+        "assessment_id",
+        "course_id",
+        "percentage"
+      ],
+      "pk": [
+        "assessment_id",
+        "course_id"
+      ],
+      "fks": []
+    },
+    "course_book": {
+      "columns": [
+        "book_id",
+        "course_id",
+        "type"
+      ],
+      "pk": [],
+      "fks": [
+        {
+          "column": "book_id",
+          "ref_table": "book",
+          "ref_column": "id"
+        },
+        {
+          "column": "course_id",
+          "ref_table": "course",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "course_course_relationship": {
+      "columns": [
+        "course_id1",
+        "course_id2",
+        "relationship_id"
+      ],
+      "pk": [],
+      "fks": [
+        {
+          "column": "relationship_id",
+          "ref_table": "course_relationship",
+          "ref_column": "id"
+        },
+        {
+          "column": "course_id1",
+          "ref_table": "course",
+          "ref_column": "id"
+        },
+        {
+          "column": "course_id2",
+          "ref_table": "course",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "course_department": {
+      "columns": [
+        "course_id",
+        "department_id"
+      ],
+      "pk": [],
+      "fks": [
+        {
+          "column": "course_id",
+          "ref_table": "course",
+          "ref_column": "id"
+        },
+        {
+          "column": "department_id",
+          "ref_table": "department",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "course_instructor": {
+      "columns": [
+        "course_id",
+        "instructor_id"
+      ],
+      "pk": [],
+      "fks": [
+        {
+          "column": "course_id",
+          "ref_table": "course",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "course_level": {
+      "columns": [
+        "id",
+        "level"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": [
+        {
+          "column": "id",
+          "ref_table": "course",
+          "ref_column": "course_level_id"
+        }
+      ]
+    },
+    "course_pathway": {
+      "columns": [
+        "program_id",
+        "pathway_id",
+        "course_id",
+        "semester",
+        "year"
+      ],
+      "pk": [],
+      "fks": [
+        {
+          "column": "course_id",
+          "ref_table": "course",
+          "ref_column": "id"
+        },
+        {
+          "column": "pathway_id",
+          "ref_table": "pathway",
+          "ref_column": "id"
+        },
+        {
+          "column": "program_id",
+          "ref_table": "program",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "course_program": {
+      "columns": [
+        "course_id",
+        "program_id",
+        "course_code",
+        "course_type_id"
+      ],
+      "pk": [],
+      "fks": [
+        {
+          "column": "course_id",
+          "ref_table": "course",
+          "ref_column": "id"
+        },
+        {
+          "column": "course_type_id",
+          "ref_table": "course_type",
+          "ref_column": "id"
+        },
+        {
+          "column": "program_id",
+          "ref_table": "program",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "course_relationship": {
+      "columns": [
+        "id",
+        "relationship"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "course_type": {
+      "columns": [
+        "id",
+        "type",
+        "type_vn"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "curriculum_4years_template": {
+      "columns": [
+        "year",
+        "semester",
+        "course_code",
+        "Course Name",
+        "Credit",
+        "Program"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "curriculum_8semesters_template": {
+      "columns": [
+        "Semester",
+        "course_code",
+        "Course Name",
+        "Credit",
+        "Program"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "curriculum_cs_4year_it_subject_only": {
+      "columns": [
+        "course_code",
+        "Course Name",
+        "credit_theory",
+        "credit_lab",
+        "Program",
+        "year",
+        "semester",
+        "degree",
+        "name"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "curriculum_cs_ae1_4years": {
+      "columns": [
+        "course_code",
+        "Course Name",
+        "year",
+        "semester"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "curriculum_cs_ae1_8semesters": {
+      "columns": [
+        "Semester",
+        "course_code",
+        "Course Name",
+        "Credits"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "curriculum_ds_ae1_4years": {
+      "columns": [
+        "course_code",
+        "Course Name",
+        "Program",
+        "year",
+        "semester"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "curriculum_ds_ae1_8semesters": {
+      "columns": [
+        "Semester",
+        "course_code",
+        "Course Name",
+        "Credits"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "curriculum_itce_ae1_4years": {
+      "columns": [
+        "course_code",
+        "Course Name",
+        "Program",
+        "year",
+        "semester"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "curriculum_itce_ae1_8semesters": {
+      "columns": [
+        "Semester",
+        "course_code",
+        "Course Name",
+        "Credits"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "curriculum_itne_ae1_4years": {
+      "columns": [
+        "course_code",
+        "Course Name",
+        "Program",
+        "year",
+        "semester"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "curriculum_itne_ae1_8semesters": {
+      "columns": [
+        "Semester",
+        "course_code",
+        "Course Name",
+        "Credits"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "department": {
+      "columns": [
+        "id",
+        "name"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "department_instructor": {
+      "columns": [
+        "department_id",
+        "instructor_id"
+      ],
+      "pk": [],
+      "fks": [
+        {
+          "column": "department_id",
+          "ref_table": "department",
+          "ref_column": "id"
+        },
+        {
+          "column": "instructor_id",
+          "ref_table": "instructor",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "discipline": {
+      "columns": [
+        "id",
+        "name"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "documentary": {
+      "columns": [
+        "document_id",
+        "name",
+        "id"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "instructor": {
+      "columns": [
+        "id",
+        "name",
+        "degree",
+        "email"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "learning_outcome": {
+      "columns": [
+        "id",
+        "course_id",
+        "description",
+        "description_vn"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": [
+        {
+          "column": "course_id",
+          "ref_table": "course",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "major": {
+      "columns": [
+        "id",
+        "discipline_id",
+        "full_name",
+        "short_name"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": [
+        {
+          "column": "discipline_id",
+          "ref_table": "discipline",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "migrations": {
+      "columns": [
+        "id",
+        "migration",
+        "batch"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "pathway": {
+      "columns": [
+        "id",
+        "pathway"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "program": {
+      "columns": [
+        "id",
+        "name",
+        "duration",
+        "version",
+        "major_id",
+        "program_type_id",
+        "valid_from"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": [
+        {
+          "column": "major_id",
+          "ref_table": "major",
+          "ref_column": "id"
+        },
+        {
+          "column": "program_type_id",
+          "ref_table": "program_type",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "program_document": {
+      "columns": [
+        "program_id",
+        "document_id",
+        "id"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": [
+        {
+          "column": "program_id",
+          "ref_table": "program",
+          "ref_column": "id"
+        },
+        {
+          "column": "document_id",
+          "ref_table": "documentary",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "program_type": {
+      "columns": [
+        "id",
+        "type",
+        "description"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "slo": {
+      "columns": [
+        "id",
+        "description",
+        "criteria"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": []
+    },
+    "syllabus_generater": {
+      "columns": [
+        "CourseID",
+        "Vietnamese",
+        "English",
+        "Lecturer",
+        "Laborator",
+        "totalCredit",
+        "description",
+        "Course Type",
+        "Intructor Name",
+        "Department",
+        "Email"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "topic": {
+      "columns": [
+        "id",
+        "name",
+        "teaching_activities",
+        "learning_activities",
+        "topic_type_id",
+        "course_id"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": [
+        {
+          "column": "course_id",
+          "ref_table": "course",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "topic_detail": {
+      "columns": [
+        "id",
+        "topic_id",
+        "week",
+        "topic_detail"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": [
+        {
+          "column": "topic_id",
+          "ref_table": "topic",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "topic_type": {
+      "columns": [
+        "id",
+        "type"
+      ],
+      "pk": [
+        "id"
+      ],
+      "fks": [
+        {
+          "column": "id",
+          "ref_table": "topic",
+          "ref_column": "id"
+        }
+      ]
+    },
+    "total_credits_by_semester_cs": {
+      "columns": [
+        "Semester",
+        "Credits"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "total_credits_by_semester_ds": {
+      "columns": [
+        "Semester",
+        "Credits"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "total_credits_by_semester_itce": {
+      "columns": [
+        "Semester",
+        "Credits"
+      ],
+      "pk": [],
+      "fks": []
+    },
+    "total_credits_by_semester_itne": {
+      "columns": [
+        "Semester",
+        "Credits"
+      ],
+      "pk": [],
+      "fks": []
+    }
+  }
+}
