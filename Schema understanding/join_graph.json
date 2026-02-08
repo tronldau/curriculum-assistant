@@ -1,0 +1,99 @@
+{
+  "domain": "curriculum",
+  "edges": {
+    "asiin_assessment_tool": [
+      "assessment",
+      "asiin_clo",
+      "course"
+    ],
+    "asiin_closlo": [
+      "asiin_clo",
+      "slo"
+    ],
+    "assessment_tool": [
+      "assessment",
+      "course",
+      "learning_outcome"
+    ],
+    "class_assessment": [
+      "learning_outcome",
+      "class_session",
+      "assessment"
+    ],
+    "class_assessment_course": [
+      "assessment",
+      "class_session"
+    ],
+    "class_session": [
+      "course"
+    ],
+    "class_slo_clo": [
+      "class_session",
+      "learning_outcome",
+      "slo"
+    ],
+    "clo_slo": [
+      "learning_outcome",
+      "slo"
+    ],
+    "course_assessment": [
+      "course"
+    ],
+    "course_book": [
+      "book",
+      "course"
+    ],
+    "course_course_relationship": [
+      "course_relationship",
+      "course",
+      "course"
+    ],
+    "course_department": [
+      "course",
+      "department"
+    ],
+    "course_instructor": [
+      "course"
+    ],
+    "course_level": [
+      "course"
+    ],
+    "course_pathway": [
+      "course",
+      "pathway",
+      "program"
+    ],
+    "course_program": [
+      "course",
+      "course_type",
+      "program"
+    ],
+    "department_instructor": [
+      "department",
+      "instructor"
+    ],
+    "learning_outcome": [
+      "course"
+    ],
+    "major": [
+      "discipline"
+    ],
+    "program": [
+      "major",
+      "program_type"
+    ],
+    "program_document": [
+      "program",
+      "documentary"
+    ],
+    "topic": [
+      "course"
+    ],
+    "topic_detail": [
+      "topic"
+    ],
+    "topic_type": [
+      "topic"
+    ]
+  }
+}
