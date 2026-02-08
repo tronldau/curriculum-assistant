@@ -16,7 +16,7 @@ class OpenRouterSLM:
         """
         self.client = OpenAI(
             base_url="https://openrouter.ai/api/v1",
-            api_key=os.getenv('OPENROUTER_API_KEY') or "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"
+            api_key=os.getenv('OPENROUTER_API_KEY') 
         )
         self.model_name = model_name
         
