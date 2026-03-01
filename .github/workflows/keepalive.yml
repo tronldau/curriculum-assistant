@@ -1,0 +1,23 @@
+name: Qdrant Keepalive
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Qdrant Cluster
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "api-key: ${{ secrets.QDRANT_API_KEY }}" \
+            "https://e0aee851-2490-4b38-b759-530a958b6660.europe-west3-0.gcp.cloud.qdrant.io:6333/collections")
+          echo "HTTP Status: $STATUS"
+          if [ "$STATUS" = "200" ]; then
+            echo "✅ Cluster alive!"
+          else
+            echo "❌ Ping failed!"
+            exit 1
+          fi
